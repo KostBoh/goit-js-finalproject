@@ -5,7 +5,7 @@ const galleryList = document.querySelector(".gallery");
 function createMarkup(items) {
   return items
     .map(
-      ({ preview, original, description }, index) => `
+      ({ preview, original, description }) => `
         <li class="gallery__item">
             <a class="gallery__link" href="${original}">
                 <img

@@ -6,13 +6,12 @@ const galleryList = document.querySelector(".gallery");
 function createMarkup(items) {
   return items
     .map(
-      ({ preview, original, description }, index) => `
+      ({ preview, original, description }) => `
         <li class="gallery__item">
             <a class="gallery__link" href="${original}">
                 <img
                 class="gallery__image"
                 src="${preview}"
-                data-source="${original}"
                 alt="${description}"/>
             </a>
         </li>`
@@ -21,17 +20,24 @@ function createMarkup(items) {
 }
 
 galleryList.insertAdjacentHTML("afterbegin", createMarkup(galleryItems));
-galleryList.addEventListener("click", handlerGaleryClick);
 
-function handlerGaleryClick(evt) {
-  evt.preventDefault();
-  if (evt.currentTarget === evt.target) {
-    return;
-  }
-  const clickedImageSrc = evt.target.getAttribute("data-source");
-  const clickedImageObject = galleryItems.find(
-    (item) => item.original === clickedImageSrc
-  );
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
 
-  console.log(clickedImageObject);
-}
+// galleryList.insertAdjacentHTML("afterbegin", createMarkup(galleryItems));
+// galleryList.addEventListener("click", handlerGaleryClick);
+
+// function handlerGaleryClick(evt) {
+//   evt.preventDefault();
+//   if (evt.currentTarget === evt.target) {
+//     return;
+//   }
+//   const clickedImageSrc = evt.target.getAttribute("data-source");
+//   const clickedImageObject = galleryItems.find(
+//     (item) => item.original === clickedImageSrc
+//   );
+
+//   console.log(clickedImageObject);
+// }
